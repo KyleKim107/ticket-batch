@@ -1,0 +1,22 @@
+# Use root/example as user/password credentials
+version: '3.8'
+
+services:
+
+  mysql:
+    container_name: mysql_local
+    image: mysql
+    volumes:
+      - ./db/conf.d:/etc/mysql/conf.d #커스텀 설정 파일들을 넣으면 된다.
+      - ./db/initdb.d:/docker-entrypoint-initdb.d #컨테이너가 시작하면 안에있는 sql,sh파일들을 실행. Ex> table schema, data insert
+
+    ports:
+        - "3306:3306"
+#    restart: always 멈추면 확인 하는 방식으로
+    environment:
+      - MYSQL_DATABASE=pass_local
+      - MYSQL_USER=pass_local
+      - MYSQL_PASSWORD=passlocal123
+      - MYSQL_ROOT_PASSWORD=passlocal123
+      - TZ=Asia/Seoul
+    # (this is just an example, not intended to be a production configuration)
