@@ -1,4 +1,4 @@
-package com.fitness.pass.pass_batch.repository;
+package com.fitness.pass.pass_batch.repository.packaze;
 
 import com.fitness.pass.pass_batch.repository.packaze.PackageEntity;
 import com.fitness.pass.pass_batch.repository.packaze.PackageRepository;
