@@ -1,4 +1,4 @@
-package com.fitness.pass.pass_batch;
+package com.fitness.pass;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

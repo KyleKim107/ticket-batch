@@ -1,9 +1,8 @@
-package com.fitness.pass.pass_batch.repository;
+package com.fitness.pass.repository;
 
-import com.fitness.pass.pass_batch.repository.packaze.PackageEntity;
-import com.fitness.pass.pass_batch.repository.packaze.PackageRepository;
+import com.fitness.pass.repository.packaze.PackageEntity;
+import com.fitness.pass.repository.packaze.PackageRepository;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,6 +1,5 @@
-package com.fitness.pass.pass_batch.repository.packaze;
+package com.fitness.pass.repository.packaze;
 
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;

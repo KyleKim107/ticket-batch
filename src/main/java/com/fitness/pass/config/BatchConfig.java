@@ -1,4 +1,4 @@
-package com.fitness.pass.pass_batch.config;
+package com.fitness.pass.config;
 
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.context.annotation.Configuration;
