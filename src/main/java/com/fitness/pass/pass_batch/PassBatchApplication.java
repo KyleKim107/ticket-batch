@@ -26,7 +26,7 @@ public class PassBatchApplication {
 	public Step passStep() {
 		return this.stepBuilderFactory.get("passStep")
 				.tasklet((contribution, chunkContext) -> {
-					System.out.println("Pass!");
+					System.out.println("Execute PassStep!");
 					return RepeatStatus.FINISHED;
 				}).build();
 	}
