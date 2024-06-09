@@ -30,7 +30,7 @@ dependencies {
 	//Lombok
 	testCompileOnly'org.projectlombok:lombok'
 	testAnnotationProcessor'org.projectlombok:lombok'
-	// junit5
+	// junit5(available above java 8)
 	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
 	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
 }
