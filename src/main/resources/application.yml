@@ -1,4 +1,9 @@
 spring:
+  main:
+    allow-bean-definition-overriding: true
+  config:
+    activate:
+      on-profile: test
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/pass_local?zeroDateTimeBehavior=convertToNull&serverTimezone=Asia/Seoul
     username: pass_local
@@ -6,7 +11,16 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     hikari:
       maximum-pool-size: 20
+  jpa:
+    show-sql: true         # 쿼리를 표준 출력으로
+    properties:
+      hibernate:
+        format_sql: false  # 아름답게 출력
 
-  batch:
-    jdbc:
-      initialize-schema: always # batch?? ? repo
+batch:
+  jdbc:
+    initialize-schema: always # batch?? ? repo
+
+logging:
+  level:
+    org.hibernate.type.descriptor.sql: off # 바인딩되는 모든 파라미터를 찍습니다.

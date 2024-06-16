@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableAutoConfiguration
 @EnableBatchProcessing
 @EntityScan("com.fitness.pass.pass_batch.repository")
-@EnableJpaRepositories("com.fitness.pass.pass_batch.repository.")
+@EnableJpaRepositories("com.fitness.pass.pass_batch.repository")
 @EnableTransactionManagement
 public class TestBatchConfig {
 }

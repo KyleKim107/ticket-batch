@@ -1,9 +1,7 @@
 package com.fitness.pass.pass_batch.repository.packaze;
 
-import com.fitness.pass.pass_batch.repository.packaze.PackageEntity;
-import com.fitness.pass.pass_batch.repository.packaze.PackageRepository;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -22,6 +20,12 @@ import static org.junit.jupiter.api.Assertions.*;
 public class PackageRepositoryTest {
     @Autowired
     private PackageRepository packageRepository;
+    private PackageEntity packageEntity;
+
+    @BeforeEach
+    public void setUp() {
+        packageEntity = new PackageEntity();
+    }
 
     @Test
     public void test_save() {

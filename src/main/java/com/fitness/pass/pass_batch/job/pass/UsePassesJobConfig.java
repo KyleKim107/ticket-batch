@@ -1,5 +1,6 @@
 package com.fitness.pass.pass_batch.job.pass;
 
+import com.fitness.pass.pass_batch.repository.pass.PassEntity;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
@@ -37,7 +38,7 @@ public class UsePassesJobConfig {
     public Step expirePassesStep() {
         return null;
 //        return stepBuilderFactory.get("expirePassesStep")
-//                .<PassEntity, PassENtity>chunk(CHUNK_SIZE)
+//                .<PassEntity, PassEntity>chunk(CHUNK_SIZE)
 //                .reader(expirePassesReader())
 //                .processor(expirePassesProcessor())
 //                .writer(expirePassesWriter())
