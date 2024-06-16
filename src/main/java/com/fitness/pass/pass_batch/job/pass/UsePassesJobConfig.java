@@ -1,4 +1,4 @@
-package com.fitness.pass.job.pass;
+package com.fitness.pass.pass_batch.job.pass;
 
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;

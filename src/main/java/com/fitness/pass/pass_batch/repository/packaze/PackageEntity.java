@@ -1,4 +1,4 @@
-package com.fitness.pass.repository.packaze;
+package com.fitness.pass.pass_batch.repository.packaze;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,4 +1,4 @@
-package com.fitness.pass.repository.packaze;
+package com.fitness.pass.pass_batch.repository.packaze;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;

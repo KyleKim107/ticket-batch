@@ -1,6 +1,6 @@
-package com.fitness.pass.repository.pass;
+package com.fitness.pass.pass_batch.repository.pass;
 
-import com.fitness.pass.repository.packaze.BaseEntity;
+import com.fitness.pass.pass_batch.repository.packaze.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
