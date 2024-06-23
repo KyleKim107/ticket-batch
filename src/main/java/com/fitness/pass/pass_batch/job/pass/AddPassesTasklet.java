@@ -31,9 +31,12 @@ public class AddPassesTasklet implements Tasklet {
     public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
         // 이용권 시작 일시 1일 전 user group 내 각 사용자에게 이용권을 추가해줍니다.
         final LocalDateTime startedAt = LocalDateTime.now().minusDays(1);
+        // 시작일자 보다 늦게 생성된 bulkpass들을 생성해 둔다.
         final List<BulkPassEntity> bulkPassEntities = bulkPassRepository.findByStatusAndStartedAtGreaterThan(BulkPassStatus.READY, startedAt);
 
+
         int count = 0;
+        // 대량 이용권 정보를 돌면서 user group에 속한 userId를 조회하고 해당 userId로 이용권을 추가합니다.
         for (BulkPassEntity bulkPassEntity : bulkPassEntities) {
             // user group에 속한 userId들을 조회합니다.
             final List<String> userIds = userGroupMappingRepository.findByUserGroupId(bulkPassEntity.getUserGroupId())
@@ -52,14 +55,14 @@ public class AddPassesTasklet implements Tasklet {
 
     // bulkPass의 정보로 pass 데이터를 생성합니다.
     private int addPasses(BulkPassEntity bulkPassEntity, List<String> userIds) {
-//        List<PassEntity> passEntities = new ArrayList<>();
-//        for (String userId : userIds) {
-//            PassEntity passEntity = PassModelMapper.INSTANCE.toPassEntity(bulkPassEntity, userId);
-//            passEntities.add(passEntity);
-//
-//        }
-//        return passRepository.saveAll(passEntities).size();
-    return 0;
+        List<PassEntity> passEntities = new ArrayList<>();
+        for (String userId : userIds) {
+            PassEntity passEntity = PassModelMapper.INSTANCE.toPassEntity(bulkPassEntity, userId);
+            passEntities.add(passEntity);
+
+        }
+        return passRepository.saveAll(passEntities).size();
+//    return 0;
     }
 
 }
