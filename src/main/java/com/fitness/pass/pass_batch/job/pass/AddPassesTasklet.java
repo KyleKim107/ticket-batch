@@ -50,7 +50,6 @@ public class AddPassesTasklet implements Tasklet {
         }
         log.info("AddPassesTasklet - execute: 이용권 {}건 추가 완료, startedAt={}", count, startedAt);
         return RepeatStatus.FINISHED;
-
     }
 
     // bulkPass의 정보로 pass 데이터를 생성합니다.
@@ -62,7 +61,6 @@ public class AddPassesTasklet implements Tasklet {
 
         }
         return passRepository.saveAll(passEntities).size();
-//    return 0;
     }
 
 }
