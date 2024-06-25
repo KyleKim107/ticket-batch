@@ -49,12 +49,15 @@ public class SendNotificationBeforeClassJobConfig {
                 .build();
     }
 
-    @Bean
+    @Bean // Chunk Unit
     public Step addNotificationStep() {
         return this.stepBuilderFactory.get("addNotificationStep")
-                .<BookingEntity, NotificationEntity>chunk(CHUNK_SIZE) // <input,output>
+                .<BookingEntity, NotificationEntity>chunk(CHUNK_SIZE)
+                // <input,output>
                 .reader(addNotificationItemReader())
+                //Reader
                 .processor(addNotificationItemProcessor())
+                //Processor
                 .writer(addNotificationItemWriter())
                 .build();
 
@@ -63,6 +66,7 @@ public class SendNotificationBeforeClassJobConfig {
     /**
      * JpaPagingItemReader: JPA에서 사용하는 페이징 기법입니다.
      * 쿼리 당 pageSize만큼 가져오며 다른 PagingItemReader와 마찬가지로 Thread-safe 합니다.
+     * 조회한 데이터에 대한 업데이트가 이뤄지지 않아 커서가 필요 없다.
      */
     @Bean
     public JpaPagingItemReader<BookingEntity> addNotificationItemReader() {
@@ -97,7 +101,7 @@ public class SendNotificationBeforeClassJobConfig {
         return this.stepBuilderFactory.get("sendNotificationStep")
                 .<NotificationEntity, NotificationEntity>chunk(CHUNK_SIZE)
                 .reader(sendNotificationItemReader())
-//                .writer(sendNotificationItemWriter)
+                .writer(sendNotificationItemWriter)
                 .taskExecutor(new SimpleAsyncTaskExecutor()) // 가장 간단한 멀티쓰레드 TaskExecutor를 선언하였습니다.
                 .build();
     }

@@ -29,7 +29,7 @@ public class UserEntity {
     // json 형태로 저장되어 있는 문자열 데이터를 Map으로 매핑합니다.
     @Type(type = "json")
     private Map<String, Object> meta;
-
+    // meta에 uuid가 있으면 반환
     public String getUuid() {
         String uuid = null;
         if (meta.containsKey("uuid")) {
