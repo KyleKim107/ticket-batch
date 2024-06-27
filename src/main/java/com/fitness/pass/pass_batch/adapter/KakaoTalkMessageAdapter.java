@@ -11,7 +11,7 @@ import java.awt.*;
 public class KakaoTalkMessageAdapter {
     private final WebClient webClient;
 
-
+    // API 호출.
     public KakaoTalkMessageAdapter(KakaoTalkMessageConfig config) {
         webClient = WebClient.builder()
                 .baseUrl(config.getHost())

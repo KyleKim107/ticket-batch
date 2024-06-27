@@ -12,10 +12,7 @@ import java.util.List;
 
 @Slf4j
 @Component
-public class SendNotificationItemWriter {
-        implements ItemWriter<NotificationEntity> {
-
-
+public class SendNotificationItemWriter implements ItemWriter<NotificationEntity>{
     private final NotificationRepository notificationRepository;
     private final KakaoTalkMessageAdapter kakaoTalkMessageAdapter;
 
