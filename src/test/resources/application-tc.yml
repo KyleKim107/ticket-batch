@@ -1,6 +1,5 @@
+
 spring:
-
-
   config:
     activate:
       on-profile: tc
@@ -22,3 +21,4 @@ spring:
 logging: # printout logging
   level:
     org.hibernate.type.descriptor.sql: trace
+

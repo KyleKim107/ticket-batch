@@ -31,9 +31,10 @@ public class AddPassesTasklet implements Tasklet {
     public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
         // 이용권 시작 일시 1일 전 user group 내 각 사용자에게 이용권을 추가해줍니다.
         final LocalDateTime startedAt = LocalDateTime.now().minusDays(1);
+        log.info("startedAt - " + startedAt.toString());
         // 시작일자 보다 늦게 생성된 bulkpass들을 생성해 둔다.
         final List<BulkPassEntity> bulkPassEntities = bulkPassRepository.findByStatusAndStartedAtGreaterThan(BulkPassStatus.READY, startedAt);
-
+        log.info("bulkPassEntities - " + bulkPassEntities.size());
 
         int count = 0;
         // 대량 이용권 정보를 돌면서 user group에 속한 userId를 조회하고 해당 userId로 이용권을 추가합니다.

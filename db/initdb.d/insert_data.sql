@@ -1,25 +1,46 @@
-INSERT INTO package (package_name, count, period, created_at)
-VALUES ('Starter PT 10회', 10, 60, '2022-08-01 00:00:00'),
-       ('Starter PT 20회', 20, 120, '2022-08-01 00:00:00'),
-       ('Starter PT 30회', 30, 180, '2022-08-01 00:00:00'),
-       ('무료 이벤트 필라테스 1회', 1, NULL, '2022-08-01 00:00:00'),
-       ('바디 챌린지 PT 4주', NULL, 28, '2022-08-01 00:00:00'),
-       ('바디 챌린지 PT 8주', NULL, 48, '2022-08-01 00:00:00'),
-       ('인바디 상담', NULL, NULL, '2022-08-01 00:00:00');
+USE pass_local;
 
-INSERT INTO `user` (user_id, user_name, status, phone, meta, created_at)
-VALUES ('A1000000', '우영우', 'ACTIVE', '01011112222', NULL, '2022-08-01 00:00:00'),
-       ('A1000001', '최수연', 'ACTIVE', '01033334444', NULL, '2022-08-01 00:00:00'),
-       ('A1000002', '이준호', 'INACTIVE', '01055556666', NULL, '2022-08-01 00:00:00'),
-       ('B1000010', '권민우', 'ACTIVE', '01077778888', NULL, '2022-08-01 00:00:00'),
-       ('B1000011', '동그라미', 'INACTIVE', '01088889999', NULL, '2022-08-01 00:00:00'),
-       ('B2000000', '한선영', 'ACTIVE', '01099990000', NULL, '2022-08-01 00:00:00'),
-       ('B2000001', '태수미', 'ACTIVE', '01000001111', NULL, '2022-08-01 00:00:00');
+INSERT INTO package (package_name, count, period, created_at) VALUES
+('Starter PT 10 Sessions', 10, 60, '2022-08-01 00:00:00'),
+('Starter PT 20 Sessions', 20, 120, '2022-08-01 00:00:00'),
+('Starter PT 30 Sessions', 30, 180, '2022-08-01 00:00:00'),
+('Free Event Pilates 1 Session', 1, NULL, '2022-08-01 00:00:00'),
+('Body Challenge PT 4 Weeks', NULL, 28, '2022-08-01 00:00:00'),
+('Body Challenge PT 8 Weeks', NULL, 48, '2022-08-01 00:00:00'),
+('InBody Consultation', NULL, NULL, '2022-08-01 00:00:00');
 
-INSERT INTO user_group_mapping (user_group_id, user_id, user_group_name, description, created_at)
-VALUES ('HANBADA', 'A1000000', '한바다', '한바다 임직원 그룹', '2022-08-01 00:00:00'),
-       ('HANBADA', 'A1000001', '한바다', '한바다 임직원 그룹', '2022-08-01 00:00:00'),
-       ('HANBADA', 'A1000002', '한바다', '한바다 임직원 그룹', '2022-08-01 00:00:00'),
-       ('HANBADA', 'B1000010', '한바다', '한바다 임직원 그룹', '2022-08-01 00:00:00'),
-       ('HANBADA', 'B2000000', '한바다', '한바다 임직원 그룹', '2022-08-01 00:00:00'),
-       ('TAESAN', 'B2000001', '태산', '태산 임직원 그룹', '2022-08-01 00:00:00');
+
+INSERT INTO user (user_id, user_name, status, phone, meta, created_at) VALUES
+('A1870662', 'MATTHEW', 'INACTIVE', '001-753-805-0946x6218', NULL, '2022-12-12 01:32:49'),
+('A7455577', 'LESLIE', 'INACTIVE', '001-678-739-2513x6758', NULL, '2023-11-09 02:11:47'),
+('A1101864', 'DANIEL', 'INACTIVE', '420-261-8766', NULL, '2023-01-23 12:11:10'),
+('A9402330', 'MARISA', 'INACTIVE', '801.412.1105x95276', NULL, '2023-10-31 05:23:11'),
+('A7036196', 'DEVIN', 'ACTIVE', '+1-526-883-7423x543', NULL, '2023-06-01 13:17:47'),
+('A8271349', 'JENNIFER', 'ACTIVE', '07415876656', NULL, '2024-03-14 08:32:17'),
+('A4682934', 'DAVID', 'INACTIVE', '001-246-941-0610x665', NULL, '2022-10-19 15:19:22'),
+('A1930275', 'AMANDA', 'ACTIVE', '507.526.3702', NULL, '2023-04-17 21:03:55'),
+('A8251476', 'CHRISTOPHER', 'ACTIVE', '06457 546177', NULL, '2023-08-25 10:52:40'),
+('A3795241', 'ELIZABETH', 'INACTIVE', '001-647-384-2116x894', NULL, '2023-07-09 14:06:12');
+
+
+INSERT INTO user_group_mapping (user_group_id, user_id, user_group_name, description, created_at) VALUES
+('FOZZYWS', 'A5177800', 'FOZZYWS', 'FOZZYWS EMPLOYEES', '2024-02-28 20:15:37'),
+('VLKYUFB', 'A3753223', 'VLKYUFB', 'VLKYUFB EMPLOYEES', '2024-04-03 05:57:53'),
+('JJPFYZM', 'A4992200', 'JJPFYZM', 'JJPFYZM EMPLOYEES', '2023-05-06 20:52:57'),
+('EONHZYG', 'A5824025', 'EONHZYG', 'EONHZYG EMPLOYEES', '2023-10-25 01:23:53'),
+('YIPFTIG', 'A5384733', 'YIPFTIG', 'YIPFTIG EMPLOYEES', '2023-02-01 09:53:44'),
+('KJNSIOP', 'A6710012', 'KJNSIOP', 'KJNSIOP EMPLOYEES', '2022-11-10 17:45:32'),
+('PLNXFYQ', 'A8123456', 'PLNXFYQ', 'PLNXFYQ EMPLOYEES', '2023-07-23 12:34:56'),
+('MNBVCXZ', 'A3456789', 'MNBVCXZ', 'MNBVCXZ EMPLOYEES', '2023-09-15 14:23:45'),
+('QWERTYU', 'A9081723', 'QWERTYU', 'QWERTYU EMPLOYEES', '2024-01-11 06:45:23'),
+('ZXCVBNM', 'A2345678', 'ZXCVBNM', 'ZXCVBNM EMPLOYEES', '2022-08-01 13:37:12');
+
+
+INSERT INTO booking (pass_seq, user_id, status, used_pass, attended, started_at, ended_at, cancelled_at, created_at, modified_at) VALUES
+(1, 'user01', 'active', 1, 1, NOW(), NOW() + INTERVAL 1 HOUR, NULL, NOW(), NULL),
+(2, 'user02', 'cancelled', 0, 0, NOW(), NOW() + INTERVAL 1 HOUR, NOW() - INTERVAL 30 MINUTE, NOW(), NOW() - INTERVAL 30 MINUTE),
+(3, 'user03', 'completed', 1, 1, NOW(), NOW() + INTERVAL 1 HOUR, NULL, NOW(), NOW() + INTERVAL 1 HOUR),
+(4, 'user04', 'active', 1, 0, NOW() + INTERVAL 1 DAY, NOW() + INTERVAL 1 DAY + INTERVAL 1 HOUR, NULL, NOW(), NULL),
+(5, 'user05', 'cancelled', 0, 0, NOW() + INTERVAL 1 DAY, NOW() + INTERVAL 1 DAY + INTERVAL 1 HOUR, NOW() + INTERVAL 1 DAY - INTERVAL 30 MINUTE, NOW(), NOW() + INTERVAL 1 DAY - INTERVAL 30 MINUTE),
+(6, 'user06', 'completed', 1, 1, NOW() + INTERVAL 2 DAY, NOW() + INTERVAL 2 DAY + INTERVAL 1 HOUR, NULL, NOW(), NOW() + INTERVAL 2 DAY + INTERVAL 1 HOUR),
+(7, 'user07', 'active', 1, 1, NOW() + INTERVAL 3 DAY, NOW() + INTERVAL 3 DAY + INTERVAL 1 HOUR, NULL, NOW(), NULL);

@@ -21,6 +21,8 @@ import org.springframework.core.task.SimpleAsyncTaskExecutor;
 
 import javax.persistence.EntityManagerFactory;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -76,11 +78,14 @@ public class MakeStatisticsJobConfig {
 
     @Bean
     public Step addStatisticsStep() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+
         return this.stepBuilderFactory.get("addStatisticsStep")
                 // The first BookingEntity is an input item read by the reader and processed by the writer.
                 // The second BookingEntity indicates the type of items to be written by the writer.
                 .<BookingEntity, BookingEntity>chunk(CHUNK_SIZE)
-                .reader(addStatisticsItemReader(null, null))
+                .reader(addStatisticsItemReader(null, null))//
                 .writer(addStatisticsItemWriter())
                 .build();
     }
