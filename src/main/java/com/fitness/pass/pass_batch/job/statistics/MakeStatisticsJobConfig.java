@@ -22,7 +22,6 @@ import org.springframework.core.task.SimpleAsyncTaskExecutor;
 import javax.persistence.EntityManagerFactory;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;

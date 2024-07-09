@@ -1,11 +1,9 @@
-server:
-  port: 8082
 spring:
   main:
     allow-bean-definition-overriding: true
-  config:
-    activate:
-      on-profile: test
+#  config:
+#    activate:
+#      on-profile: test
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/pass_local?zeroDateTimeBehavior=convertToNull&serverTimezone=Asia/Seoul
     username: pass_local
@@ -23,3 +21,6 @@ spring:
       enabled: false
     jdbc:
       initialize-schema: always
+
+server:
+  port: 8082

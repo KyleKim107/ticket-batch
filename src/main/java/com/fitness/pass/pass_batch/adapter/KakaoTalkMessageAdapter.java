@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import java.awt.*;
 @Service
 public class KakaoTalkMessageAdapter {
     private final WebClient webClient;

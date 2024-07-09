@@ -1,8 +1,8 @@
 package com.fitness.pass.pass_batch.job.statistics;
 import com.fitness.pass.pass_batch.repository.statistics.AggregatedStatistics;
+import com.fitness.pass.pass_batch.util.LocalDateTimeUtils;
 import com.fitness.pass.pass_batch.repository.statistics.StatisticsRepository;
 import com.fitness.pass.pass_batch.util.CustomCSVWriter;
-import com.fitness.pass.pass_batch.util.LocalDateTimeUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.StepContribution;
 import org.springframework.batch.core.configuration.annotation.StepScope;
