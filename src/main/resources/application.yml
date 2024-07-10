@@ -15,7 +15,7 @@ spring:
     show-sql: true
     properties:
       hibernate:
-        format_sql: false
+        format_sql: true
   batch:
     job:
       enabled: false
@@ -23,4 +23,8 @@ spring:
       initialize-schema: always
 
 server:
-  port: 8082
+  port: 8080
+
+kakaotalk:
+  host: https://kapi.kakao.com
+  token: YOUR_ACCESS_TOKEN

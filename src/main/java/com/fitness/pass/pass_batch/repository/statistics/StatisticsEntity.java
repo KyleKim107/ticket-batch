@@ -35,7 +35,6 @@ public class StatisticsEntity {
         }
         if (BookingStatus.CANCELLED.equals(bookingEntity.getStatus())) {
             statisticsEntity.setCancelledCount(1);
-
         }
         return statisticsEntity;
 
