@@ -2,8 +2,7 @@
 
 # pass-batch
 
-PT 이용권 관리 서비스 내 배치 repository 입니다.
-이용권 만료, 일괄 지급, 수업 전 알림, 수업 후 이용권 차감 기능을 제공합니다.
+This is the batch repository for the PT Subscription Management Service. It provides the following functionalities: subscription expiry, bulk subscription grant, pre-class notification, and post-class subscription deduction.
 
 ## Environments
 * OpenJDK 18.0.1
@@ -15,7 +14,10 @@ PT 이용권 관리 서비스 내 배치 repository 입니다.
 * ModelMapper
 
 ## Process
-### 이용권 만료
+### Subscription Expiry
+### JOB1. 이용권 만료
+* `chunk step`
+* Read the targets for subscription expiry (ExpirePassesReader) and update their status to expired (ExpirePassesWriter)
 ```mermaid
 sequenceDiagram
     participant Batch
@@ -28,7 +30,9 @@ sequenceDiagram
 
 ```
 
-### 이용권 일괄 지급
+### Bulk Subscription Grant
+* `tasklet step`
+* When registered by the admin, the subscriptions are granted to users at a specified time (AddPassesTasklet)
 ```mermaid
 sequenceDiagram
     actor User
@@ -44,7 +48,11 @@ sequenceDiagram
 
 ```
 
-### 수업 전 알림
+### Pre-class Notification
+* `multiple thread chunk step`
+* -> Parallel processing provided by Spring Batch
+1. Step1: Retrieve the targets for notification
+2. Step2: Send the notifications
 ```mermaid
 sequenceDiagram
     participant Batch
@@ -67,7 +75,9 @@ sequenceDiagram
 
 ```
 
-### 수업 후 이용권 차감
+### Post-class Subscription Deduction
+* `chunk step`
+* UserPassesReader -> AsyncItemProcessor -> AsyncItemWriter
 ```mermaid
 sequenceDiagram
     participant Batch
@@ -79,3 +89,17 @@ sequenceDiagram
     Batch->>DB: Deduct subscription for each user
 
 ```
+# Job Scheduling
+## AddPassesJob 
+### Description
+![](Images/addPassesJob/register_pass.png)
+![](Images/addPassesJob/confirm_adding_pass.png)
+![](Images/addPassesJob/issue_pass.png)
+![](Images/addPassesJob/run_job.png)
+![](Images/addPassesJob/user_page.png)
+
+## makeStatisticsJob 
+### Description
+![](Images/makeStatisticsJob/stat_page.png)
+![](Images/makeStatisticsJob/run.png)
+![](Images/makeStatisticsJob/after_job_work.png)
