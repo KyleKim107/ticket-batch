@@ -1,6 +1,21 @@
 
+# How to Run
+### step 1. Run Docker Compose
+```
+docker-compose up -d
+```
+### step 2. Run Spring Boot Application
 
-# pass-batch
+### step 3. Run web [front-end repo](https://github.com/KyleKim107/pass-web)
+
+# project Overview
+ - **Web** : Represents the frontend interacting with users.
+- **API** : Acts as a bridge between the Web and DB/Batch components.
+- **DB (MySQL)**: Central data storage accessed by both the API and Batch.
+- **Batch**: Background processing unit handling intensive tasks and periodic jobs.
+![](Images/project_archi.png)
+
+# pass-batch 
 
 This is the batch repository for the PT Subscription Management Service. It provides the following functionalities: subscription expiry, bulk subscription grant, pre-class notification, and post-class subscription deduction.
 
@@ -30,6 +45,7 @@ This is the batch repository for the PT Subscription Management Service. It prov
 
 
 ![](Images/batch_meta_tables.png)
+
 
 ## Process
 ### JOB1. Subscription Expiry
@@ -106,17 +122,45 @@ sequenceDiagram
     Batch->>DB: Deduct subscription for each user
 
 ```
-# Job Scheduling
-## AddPassesJob 
-### Description
-![](Images/addPassesJob/register_pass.png)
-![](Images/addPassesJob/confirm_adding_pass.png)
-![](Images/addPassesJob/issue_pass.png)
-![](Images/addPassesJob/run_job.png)
-![](Images/addPassesJob/user_page.png)
+## User Use Case
+### AddPassesJob
+- Add a bulk pass 
+  - `Member Group Id` is the group id of the users who will receive the passes
+      ![](Images/addPassesJob/register_pass.png)
+- Confirm the passes to be added
+  ![](Images/addPassesJob/confirm_adding_pass.png)
+- Issue the passes to the users
+    ![](Images/addPassesJob/issue_pass.png)
+- Run the job
+  - the batch job adds passes to the users who belong to the `Member Group Id`
+    ![](Images/addPassesJob/run_job.png)
+- Check the result
+  - the passes have been successfully added to the users 
+    ![](Images/addPassesJob/user_page.png)
 
 ## makeStatisticsJob 
-### Description
+- Check the statistics page
+  - the statistics page shows the number of attendances (blue) and the number of absent (red)
 ![](Images/makeStatisticsJob/stat_page.png)
+- Run the job
+  - the job has been successfully executed
+  - retrieve booking entities that has ended date during the date range in the job parameter.
 ![](Images/makeStatisticsJob/run.png)
+- the statistics have been successfully updated with demo data
 ![](Images/makeStatisticsJob/after_job_work.png)
+- Export the statistics to a CSV file
+  - the statistics have been successfully exported to a CSV file
+  - field info
+    - data and time
+    - the number of attendances
+    - the number of absent
+    - the number of total booking
+  ![](Images/makeStatisticsJob/daily_cvs.png)
+- Check the weekly statistics
+  - the weekly statistics have been successfully updated with demo data
+  - field info
+    - the number of week in the year
+    - attendances
+    - absent
+    - total booking
+![](Images/makeStatisticsJob/weekly_cvs.png)
