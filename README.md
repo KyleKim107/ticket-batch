@@ -126,17 +126,17 @@ sequenceDiagram
 ### AddPassesJob
 - Add a bulk pass 
   - `Member Group Id` is the group id of the users who will receive the passes
-      ![](Images/addPassesJob/register_pass.png)
+![](Images/addPassesJob/register_pass.png)
 - Confirm the passes to be added
-  ![](Images/addPassesJob/confirm_adding_pass.png)
+![](Images/addPassesJob/confirm_adding_pass.png)
 - Issue the passes to the users
-    ![](Images/addPassesJob/issue_pass.png)
+![](Images/addPassesJob/issue_pass.png)
 - Run the job
   - the batch job adds passes to the users who belong to the `Member Group Id`
-    ![](Images/addPassesJob/run_job.png)
+![](Images/addPassesJob/run_job.png)
 - Check the result
   - the passes have been successfully added to the users 
-    ![](Images/addPassesJob/user_page.png)
+![](Images/addPassesJob/user_page.png)
 
 ## makeStatisticsJob 
 - Check the statistics page
@@ -155,7 +155,7 @@ sequenceDiagram
     - the number of attendances
     - the number of absent
     - the number of total booking
-  ![](Images/makeStatisticsJob/daily_cvs.png)
+![](Images/makeStatisticsJob/daily_cvs.png)
 - Check the weekly statistics
   - the weekly statistics have been successfully updated with demo data
   - field info
