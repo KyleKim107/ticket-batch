@@ -136,8 +136,10 @@ sequenceDiagram
 - access url: http://localhost:8081/admin/bulk-pass
 ![](Images/addPassesJob/register_pass.png)
 - Confirm the passes to be added
+
 ![](Images/addPassesJob/confirm_adding_pass.png)
 - Issue the passes to the users <br>
+
 ![](Images/addPassesJob/issue_pass.png)
 - Run the job
   - the batch job adds passes to the users who belong to the `Member Group Id`<br>
