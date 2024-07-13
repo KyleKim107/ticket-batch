@@ -101,6 +101,10 @@ sequenceDiagram
 ```
 ### JOB2. Subscription Expiry
 * `chunk step`
+* Class: ExpirePassesJobConfig
+  * expirePassesJob: 
+    1. Read the targets for subscription expiry (ExpirePassesReader)
+    2. Update their status to expired (ExpirePassesWriter)
 * Read the targets for subscription expiry (ExpirePassesReader) and update their status to expired (ExpirePassesWriter)
 ```mermaid
 sequenceDiagram
@@ -117,6 +121,7 @@ sequenceDiagram
 ### JOB3. Bulk Subscription Grant
 * `tasklet step`
 * When registered by the admin, the subscriptions are granted to users at a specified time (AddPassesTasklet)
+* Refer the User Use Case Below
 ```mermaid
 sequenceDiagram
     actor User
@@ -161,6 +166,8 @@ sequenceDiagram
 
 ### JOB5. Post-class Subscription Deduction
 * `chunk step`
+* Class: UsePassesJobConfig
+  * usePassesJob: Deduct the subscription from the users who attended the class
 * UserPassesReader -> AsyncItemProcessor -> AsyncItemWriter
 ```mermaid
 sequenceDiagram
@@ -179,22 +186,29 @@ sequenceDiagram
 ### AddPassesJob
 - Add a bulk pass 
   - `Member Group Id` is the group id of the users who will receive the passes
+- access url: http://localhost:8081/admin/bulk-pass
 ![](Images/addPassesJob/register_pass.png)
 - Confirm the passes to be added
+
 ![](Images/addPassesJob/confirm_adding_pass.png)
-- Issue the passes to the users
+- Issue the passes to the users <br>
+
 ![](Images/addPassesJob/issue_pass.png)
 - Run the job
-  - the batch job adds passes to the users who belong to the `Member Group Id`
+  - the batch job adds passes to the users who belong to the `Member Group Id`<br>
 ![](Images/addPassesJob/run_job.png)
 - Check the result
-  - the passes have been successfully added to the users 
+  - the passes have been successfully added to the users
+- access url: http://localhost:8081/passes?userId=<user_id>
+  - ex> http://localhost:8081/passes?userId=A1870662
 ![](Images/addPassesJob/user_page.png)
 
 ## makeStatisticsJob 
 - Check the statistics page
   - the statistics page shows the number of attendances (blue) and the number of absent (red)
-![](Images/makeStatisticsJob/stat_page.png)
+- access url: http://localhost:8081/admin?to=<today_date>
+  - EX > access url: http://localhost:8081/admin?to=2024-07-11
+  ![](Images/makeStatisticsJob/stat_page.png)
 - Run the job
   - the job has been successfully executed
   - retrieve booking entities that has ended date during the date range in the job parameter.
