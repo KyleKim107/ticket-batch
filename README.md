@@ -51,47 +51,53 @@ docker-compose up -d
 ## Process
 
 ### JOB1. Create the Statistics
-* `tasklet steps`
-  * ***Step1***: Generate statistics entity for the past day and week
-  * ***Step2***: Export the statistics to a daily CSV file
-  * ***Step3***: Export the statistics to a weekly CSV file
+* Class: makeStatisticsJobConfig
+  * makeStatisticsJob
+    * `tasklet steps`
+      * ***Step1***: Generate statistics entity for the past day and week
+      * ***Step2***: Export the statistics to a daily CSV file
+      * ***Step3***: Export the statistics to a weekly CSV file
 ```mermaid
+
 sequenceDiagram
-    participant Admin
-    participant JobScheduler
+    participant User
+    participant API
     participant Batch
     participant DB
 
-    Admin->>JobScheduler: Schedules makeStatisticsJob
-    JobScheduler->>Batch: Starts makeStatisticsJob
+    User->>API: Request to start makeStatisticsJob
+    API->>Batch: Starts makeStatisticsJob
     activate Batch
 
-    alt addStatisticsFlow
-        Batch->>DB: Retrieve booking entities within date range
-        activate DB
-        DB-->>Batch: Returns booking entities
-        deactivate DB
-        Batch->>Batch: Process booking entities and update statistics
-        Batch->>DB: Save updated statistics
-        activate DB
-        DB-->>Batch: Confirm save
-        deactivate DB
+    alt addStatisticsFlow (Chunk-based)
+        loop Process each chunk
+            Batch->>DB: Retrieve booking entities within date range
+            activate DB
+            DB-->>Batch: Returns booking entities
+            deactivate DB
+            Batch->>Batch: Process booking entities and update statistics
+            Batch->>DB: Save updated statistics
+            activate DB
+            DB-->>Batch: Confirm save
+            deactivate DB
+        end
     end
 
-    alt makeDailyStatisticsFlow
+    alt makeDailyStatisticsFlow (Tasklet)
         Batch->>Batch: Generate daily statistics
         Batch->>CSVExporter: Export daily statistics to CSV
         CSVExporter-->>Batch: Confirm export
     end
 
-    alt makeWeeklyStatisticsFlow
+    alt makeWeeklyStatisticsFlow (Tasklet)
         Batch->>Batch: Generate weekly statistics
         Batch->>CSVExporter: Export weekly statistics to CSV
         CSVExporter-->>Batch: Confirm export
     end
 
-    Batch->>Admin: Notify job completion
+    Batch->>API: Notify job completion
     deactivate Batch
+    API->>User: Notify job completion
 ```
 ### JOB2. Subscription Expiry
 * `chunk step`
