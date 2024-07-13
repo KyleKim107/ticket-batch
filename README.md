@@ -1,21 +1,5 @@
 
-# How to Run
-### step 1. Run Docker Compose
-```
-docker-compose up -d
-```
-### step 2. Run Spring Boot Application
-
-### step 3. Run web [front-end repo](https://github.com/KyleKim107/pass-web)
-
-# project Overview
- - **Web** : Represents the frontend interacting with users.
-- **API** : Acts as a bridge between the Web and DB/Batch components.
-- **DB (MySQL)**: Central data storage accessed by both the API and Batch.
-- **Batch**: Background processing unit handling intensive tasks and periodic jobs.
-![](Images/project_archi.png)
-
-# pass-batch 
+# pass-batch
 
 This is the batch repository for the PT Subscription Management Service. It provides the following functionalities: subscription expiry, bulk subscription grant, pre-class notification, and post-class subscription deduction.
 
@@ -28,8 +12,25 @@ This is the batch repository for the PT Subscription Management Service. It prov
 * lombok
 * ModelMapper
 
+
+# How to Run
+### step 1. Run Docker Compose
+```
+docker-compose up -d
+```
+### step 2. Run Spring Boot Application on port 8080
+
+### step 3. Run web [front-end application](https://github.com/KyleKim107/pass-web) on port 8081
+
+# project Overview
+ - **Web** : Represents the frontend interacting with users.
+- **API** : Acts as a bridge between the Web and DB/Batch components.
+  - Also, it invokes the Batch jobs
+- **DB (MySQL)**: Central data storage accessed by both the API and Batch.
+- **Batch**: Background processing unit handling intensive tasks and periodic jobs.<br>
+  ![](Images/project_archi.png)
+
 ## Why Choose Spring Batch? 
-### Key Differences:
 
 - **Batch Usage**: By automating large volumes of data and repetitive tasks, you can efficiently handle them in the background. This ensures stability by allowing system recovery and re-execution from the last checkpoint in case of failures. Tasks that need to be executed periodically (e.g., checking for subscription expiration at midnight) can be easily implemented.
 
