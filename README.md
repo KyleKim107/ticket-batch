@@ -51,12 +51,12 @@ docker-compose up -d
 ## Process
 
 ### JOB1. Create the Statistics
-* Class: makeStatisticsJob
-  * 
-* `tasklet steps`
-  * ***Step1***: Generate statistics entity for the past day and week
-  * ***Step2***: Export the statistics to a daily CSV file
-  * ***Step3***: Export the statistics to a weekly CSV file
+* Class: makeStatisticsJobConfig
+  * makeStatisticsJob
+    * `tasklet steps`
+      * ***Step1***: Generate statistics entity for the past day and week
+      * ***Step2***: Export the statistics to a daily CSV file
+      * ***Step3***: Export the statistics to a weekly CSV file
 ```mermaid
 
 sequenceDiagram
