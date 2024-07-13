@@ -49,7 +49,51 @@ docker-compose up -d
 
 
 ## Process
-### JOB1. Subscription Expiry
+
+### JOB1. Create the Statistics
+* `tasklet steps`
+  * ***Step1***: Generate statistics entity for the past day and week
+  * ***Step2***: Export the statistics to a daily CSV file
+  * ***Step3***: Export the statistics to a weekly CSV file
+```mermaid
+sequenceDiagram
+    participant Admin
+    participant JobScheduler
+    participant Batch
+    participant DB
+
+    Admin->>JobScheduler: Schedules makeStatisticsJob
+    JobScheduler->>Batch: Starts makeStatisticsJob
+    activate Batch
+
+    alt addStatisticsFlow
+        Batch->>DB: Retrieve booking entities within date range
+        activate DB
+        DB-->>Batch: Returns booking entities
+        deactivate DB
+        Batch->>Batch: Process booking entities and update statistics
+        Batch->>DB: Save updated statistics
+        activate DB
+        DB-->>Batch: Confirm save
+        deactivate DB
+    end
+
+    alt makeDailyStatisticsFlow
+        Batch->>Batch: Generate daily statistics
+        Batch->>CSVExporter: Export daily statistics to CSV
+        CSVExporter-->>Batch: Confirm export
+    end
+
+    alt makeWeeklyStatisticsFlow
+        Batch->>Batch: Generate weekly statistics
+        Batch->>CSVExporter: Export weekly statistics to CSV
+        CSVExporter-->>Batch: Confirm export
+    end
+
+    Batch->>Admin: Notify job completion
+    deactivate Batch
+```
+### JOB2. Subscription Expiry
 * `chunk step`
 * Class: ExpirePassesJobConfig
   * expirePassesJob: 
@@ -68,7 +112,7 @@ sequenceDiagram
 
 ```
 
-### JOB2. Bulk Subscription Grant
+### JOB3. Bulk Subscription Grant
 * `tasklet step`
 * When registered by the admin, the subscriptions are granted to users at a specified time (AddPassesTasklet)
 * Refer the User Use Case Below
@@ -87,7 +131,7 @@ sequenceDiagram
 
 ```
 
-### JOB3. Pre-class Notification
+### JOB4. Pre-class Notification
 * `multiple thread chunk step`
 * -> Parallel processing provided by Spring Batch
 1. Step1: Retrieve the targets for notification
@@ -114,7 +158,7 @@ sequenceDiagram
 
 ```
 
-### JOB4. Post-class Subscription Deduction
+### JOB5. Post-class Subscription Deduction
 * `chunk step`
 * Class: UsePassesJobConfig
   * usePassesJob: Deduct the subscription from the users who attended the class
@@ -130,6 +174,8 @@ sequenceDiagram
     Batch->>DB: Deduct subscription for each user
 
 ```
+
+
 ## User Use Case
 ### AddPassesJob
 - Add a bulk pass 
